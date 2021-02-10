@@ -3,9 +3,9 @@ const fs = require('fs')
 const path = require('path')
 
 class Course {
-  constructor(title, prcie, img) {
+  constructor(title, price, img) {
     this.title = title;
-    this.price = prcie;
+    this.price = price;
     this.img = img;
     this.id = uuid();
   }
@@ -52,7 +52,11 @@ class Course {
         }
       )
     })
+  }
 
+  static async getById(id) {
+    const courses = await Course.getAll();
+    return courses.find(c => c.id === id);
   }
 }
 
